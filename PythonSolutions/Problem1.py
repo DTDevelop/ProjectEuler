@@ -45,6 +45,11 @@ def sum_of_list(my_list):
     return sum_of_list
 
 
+
+"""
+QUESTIONS / SOLUTIONS
+"""
+
 # If we list all natural numbers below 10
 
 natural_number_list = natural_numbers(10)
