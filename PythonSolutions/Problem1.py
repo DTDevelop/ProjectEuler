@@ -3,7 +3,7 @@ Multiples of 3 and 5
 Problem 1
 """
 
-# If we list all natural numbers below 10
+# HELPER FUNCTIONS
 
 def natural_numbers(max_value):
     """
@@ -15,15 +15,6 @@ def natural_numbers(max_value):
         natural_nums.append(wanted_num)
 
     return natural_nums
-
-natural_number_list = natural_numbers(10)
-print('\n')
-print('all natural numbers below 10')
-print(natural_number_list)
-print('\n')
-
-# that are multiples of 3 or 5
-# creating a new list while checking existing list
 
 def multiples_check(number_list, constraint_one, constraint_two):
     """
@@ -37,14 +28,6 @@ def multiples_check(number_list, constraint_one, constraint_two):
             new_nums.append(number)
 
     return new_nums
-
-short_num_list = multiples_check(natural_number_list, 3, 5)
-print('all natural numbers below 10 that are multiples of 3 or 5')
-print(short_num_list)
-print('\n')
-
-# we get 3, 5, 6, 9
-# the sum of these multiples is 23
 
 def sum_of_list(my_list):
     """
@@ -62,15 +45,36 @@ def sum_of_list(my_list):
     return sum_of_list
 
 
+# If we list all natural numbers below 10
+
+natural_number_list = natural_numbers(10)
+print('\n')
+print('all natural numbers below 10')
+print(natural_number_list)
+print('\n')
+
+# that are multiples of 3 or 5
+# creating a new list while checking existing list
+
+short_num_list = multiples_check(natural_number_list, 3, 5)
+print('all natural numbers below 10 that are multiples of 3 or 5')
+print(short_num_list)
+print('\n')
+
+
+# we get 3, 5, 6, 9
+# the sum of these multiples is 23
+
 print('sum of the multiples for all natural numbers below 10 that are multiples of 3 or 5')
 print(sum_of_list(short_num_list))
-
+print('\n')
 
 
 ## QUESTION:
-# find the sum of all multiplpes of 3 or 5 below 1000
+# find the sum of all multiples of 3 or 5 below 1000
 
-
+print('sum of all multiples of 3 or 5 below 1000')
+print(sum_of_list(multiples_check(natural_numbers(1000), 3, 5)))
 
 
 
