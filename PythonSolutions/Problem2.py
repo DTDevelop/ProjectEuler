@@ -22,10 +22,13 @@ def fibonacci_sequence_gen_two(num_ceiling, start_list):
     """
     given max value and starting list
     returns fibonacci sequence up to that maximum
+    **
+    current max value: 573147844013817084101
+    configure while loop for higher values
     """
 
     my_numbers = start_list
-    while len(my_numbers) < 100: #timeout safeguard
+    while len(my_numbers) < 100: #timeout safeguard, max value: 573147844013817084101
         new_value = my_numbers[-1] + my_numbers[-2]
         if new_value > num_ceiling:
             break
@@ -62,10 +65,6 @@ print('\n')
 print('sum of even-valued terms in Fibonacci sequence whose values do not exceed four million')
 print(sum_of_even(fibonacci_sequence_gen_two(4000000, [1,2])))
 print('\n')
-
-
-
-
 
 
 
