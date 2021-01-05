@@ -45,7 +45,7 @@ def prime_list(length, num):
     returns list of prime numbers of desired length
     """
 
-    prime_list = []
+    result_list = []
     current_check = num
 
     while len(prime_list) < length:
@@ -53,12 +53,12 @@ def prime_list(length, num):
             prime_list.append(current_check)
         current_check += 1
 
-    return prime_list
+    return result_list
 
 # test case
 # known prime numbers from question: 2, 3, 5, 7, 11, 13
 # return a list of prime numbers up to length 6, starting at 2
-print(prime_list(6,2))
+# print(prime_list(6,2))
 
 # expected output:
 # [2, 3, 5, 7, 11, 13]
@@ -66,13 +66,26 @@ print(prime_list(6,2))
 # actual output:
 # [2, 3, 5, 7, 11, 13]
 
-def return_prime_v1(ind):
+def get_prime_v1(ind):
     """
     given index
     returns prime number at index
     """
 
-    return prime_number
+    result_list = prime_list(ind, 2) # creates prime number list
+    # consider, generator
+    return result_list.pop() # returns value at index
+
+# test case
+# known prime numbers from question: 2, 3, 5, 7, 11, 13
+# return the 3rd prime number, return the 6th prime number
+print(get_prime_v1(3), get_prime_v1(6))
+
+# expected output:
+# 5, 13
+
+# actual output:
+# 5, 13
 
 """
 QUESTIONS / SOLUTIONS
@@ -84,11 +97,11 @@ QUESTIONS / SOLUTIONS
 print('\n')
 print('what is the 13th prime number')
 our_index = 6
-print(return_prime_v1(our_index))
+print(get_prime_v1(our_index))
 
 # what is the 10 0001st prime number?
 
 print('\n')
 print('what is the 10 001st prime number')
 our_index = 10001
-print(return_prime_v1(our_index))
+print(get_prime_v1(our_index))
