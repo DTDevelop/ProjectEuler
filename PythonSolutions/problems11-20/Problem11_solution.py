@@ -30,7 +30,7 @@ def greatest_product_of_column(matrix, adjacent):
 
 # test_matrix = [[1, 2, 3, 4, 5, 6, 7, 8]]*8
 # test_matrix_2 = [[8,5,3,6],[5,9,3,2],[9,9,9,9],[1,2,9,9]]
-#
+
 # print(greatest_product_of_column(test_matrix,4))
 # print(greatest_product_of_column(test_matrix_2,4))
 
@@ -43,14 +43,41 @@ def greatest_product_of_column(matrix, adjacent):
 # 972
 
 
-
 def greatest_product_of_row(matrix, adjacent):
     """
     given matrix and number of adjacent
     return greatest product of row
     """
+    greatest_product = 0
 
+    matrix_length = len(matrix)
+
+    for col in range(matrix_length):
+        for num in range(matrix_length): # relative number to compare
+            if num + adjacent > matrix_length: # not enough values in direction to compare
+                continue
+            new_product = 1
+            for inc in range(adjacent): # calculating product
+                new_product *= matrix[col][num+inc]
+            if new_product > greatest_product:
+                greatest_product = new_product
     return greatest_product
+
+# test case
+
+# test_matrix = [[1, 2, 3, 4, 5], [5, 6, 6, 6, 6], [7, 9, 9, 9, 9], [8, 9, 9, 3, 2], [2, 5, 7, 1, 9]]
+# test_matrix_2 = [[8,5,3,6],[5,9,3,2],[1,9,2,9],[1,2,9,9]]
+
+# print(greatest_product_of_row(test_matrix,4))
+# print(greatest_product_of_row(test_matrix_2,4))
+
+# expected output:
+# 6561 (9*9*9*9)
+# 720 (8*5*3*6)
+
+# actual output:
+# 6561
+# 720
 
 def greatest_product_of_diag(matrix, adjacent):
     """
