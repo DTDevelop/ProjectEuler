@@ -17,7 +17,7 @@ def greatest_product_of_column(matrix, adjacent):
     for row in range(matrix_length):
         for num in range(matrix_length): # relative number to compare
             if num + adjacent > matrix_length: # not enough values in direction to compare
-                continue
+                continue # move to next column
             new_product = 1
             for inc in range(adjacent): # calculating product
                 new_product *= matrix[num+inc][row]
@@ -42,7 +42,6 @@ def greatest_product_of_column(matrix, adjacent):
 # 4096
 # 972
 
-
 def greatest_product_of_row(matrix, adjacent):
     """
     given matrix and number of adjacent
@@ -55,7 +54,7 @@ def greatest_product_of_row(matrix, adjacent):
     for col in range(matrix_length):
         for num in range(matrix_length): # relative number to compare
             if num + adjacent > matrix_length: # not enough values in direction to compare
-                continue
+                continue # move to next row
             new_product = 1
             for inc in range(adjacent): # calculating product
                 new_product *= matrix[col][num+inc]
@@ -84,10 +83,26 @@ def greatest_product_of_diag(matrix, adjacent):
     given matrix and number of adjacent
     return greatest product of diagonal
     """
+    greatest_product = 0
 
+    matrix_length = len(matrix)
+
+    for col in range(matrix_length):
+        for num in range(matrix_length): # relative number to compare
+            if num + adjacent > matrix_length: # not enough values in direction to compare
+                continue # move to next row
+            if col + adjacent > matrix_length: # not enough remaining diagonals to compare
+                return greatest_product # end
+            new_product = 1
+            for inc in range(adjacent): # calculating product
+                new_product *= matrix[col+inc][num+inc]
+            if new_product > greatest_product:
+                greatest_product = new_product
     return greatest_product
 
+
 # MAIN FUNCTION
+
 
 def greatest_product(matrix, adjacent):
     """
@@ -96,8 +111,74 @@ def greatest_product(matrix, adjacent):
     """
 
     # use and compare helper functions
+    col = greatest_product_of_column(matrix, adjacent)
+    row = greatest_product_of_row(matrix, adjacent)
+    diag = greatest_product_of_diag(matrix, adjacent)
+
+    return max(col, row, diag) # returns highest product
+
+
+# TEST FUNCTIONS
+
+def greatest_product_of_column_test(matrix, adjacent):
+    """
+    TEST FUNCTION: outputs each multiplication pairing
+    given matrix and number of adjacent
+    return greatest product of column
+    """
+    greatest_product = 0
+
+    matrix_length = len(matrix)
+
+    for row in range(matrix_length):
+        print('col number: ', col) # CHECK
+        for num in range(matrix_length): # relative number to compare
+            if num + adjacent > matrix_length: # not enough values in direction to compare
+                continue # move to next column
+            new_product = 1
+            group_multiply = [] # CHECK
+            for inc in range(adjacent): # calculating product
+                new_product *= matrix[num+inc][row]
+                group_multiply.append(matrix[num+inc][row]) # CHECK
+            print(group_multiply) # CHECK
+            if new_product > greatest_product:
+                greatest_product = new_product
+        print('') # CHECK
 
     return greatest_product
+
+# expected output: all pairings up & down, length of adjacent
+# acutal output: all pairings up & down, length of adjacent
+
+def greatest_product_of_row_test(matrix, adjacent):
+    """
+    TEST FUNCTION: outputs each multiplcation pairing
+    given matrix and number of adjacent
+    return greatest product of row
+    """
+    greatest_product = 0
+
+    matrix_length = len(matrix)
+
+    for col in range(matrix_length):
+        print('row number: ', col) # CHECK
+        for num in range(matrix_length): # relative number to compare
+            if num + adjacent > matrix_length: # not enough values in direction to compare
+                continue # move to next row
+            new_product = 1
+            group_multiply = [] # CHECK
+            for inc in range(adjacent): # calculating product
+                new_product *= matrix[col][num+inc]
+                group_multiply.append(matrix[col][num+inc]) # CHECK
+            print(group_multiply) # CHECK
+            if new_product > greatest_product:
+                greatest_product = new_product
+        print('') # CHECK
+    return greatest_product
+
+# expected output: allpairings left & right, length of adjacent
+# actual output: allpairings left & right, length of adjacent
+
 
 """
 QUESTIONS / SOLUTIONS
@@ -136,10 +217,12 @@ my_numbers = grid.split()
 number_matrix = []
 for dummy_i in range(20):
     new_list = []
-    for num in my_numbers[:19]:
+    for num in my_numbers[:20]:
         new_list.append(num)
     number_matrix.append(new_list)
-    my_numbers = my_numbers[19:] # trim
+    my_numbers = my_numbers[20:] # trim
+
+number_matrix = [[int(num) for num in group] for group in number_matrix] # list comprehension convert strings to int
 
 # what is the greatest product of four adjacent numbers in the same direction
 # (up, down, left, right, diagonal)
@@ -147,4 +230,5 @@ for dummy_i in range(20):
 
 print('\n')
 print('what is the greatest product of four adjacent numbers in the same direction')
-print(greatest_product(number_matrix, 4))
+# print(greatest_product(number_matrix, 4))
+print(greatest_product_of_row_test(number_matrix,4))
