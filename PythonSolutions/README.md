@@ -1,2 +1,0 @@
-  
-Solutions created in Python
